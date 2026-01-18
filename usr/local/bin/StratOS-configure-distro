@@ -1,4 +1,10 @@
 #!/bin/bash
+set -e
+exit_program(){
+	echo "Exiting............."
+	exit 1
+}
+trap exit_program INT
 
 menu() {
     dialog --clear --backtitle "Distro Selector" \
@@ -18,7 +24,7 @@ while true; do
             echo "Bootstrapping Ubuntu..."
             until which apt &>/dev/null; do
                 pkexec brl remove -d ubuntu 2>/dev/null
-                pkexec brl fetch ubuntu
+				pkexec brl fetch ubuntu || wget https://cdimage.ubuntu.com/ubuntu-base/releases/25.10/release/ubuntu-base-25.10-base-amd64.tar.gz -O /tmp/ubuntu-rootfs.tar.gz && pkexec brl import ubuntu /tmp/ubuntu-rootfs.tar.gz
                 sudo apt update
                 sudo apt install -y nala
             done
@@ -27,9 +33,9 @@ while true; do
         2)
             echo "Bootstrapping Fedora..."
             until which dnf &>/dev/null; do
-				wget https://dl.fedoraproject.org/pub/fedora/linux/releases/42/Container/x86_64/images/Fedora-WSL-Base-42-1.1.x86_64.tar.xz -O /tmp/fedora-rootfs.tar.xz
                 pkexec brl remove -d fedora 2>/dev/null
-				pkexec brl import fedora /tmp/fedora-rootfs.tar.xz
+				pkexec brl fetch fedora || wget https://dl.fedoraproject.org/pub/fedora/linux/releases/42/Container/x86_64/images/Fedora-WSL-Base-42-1.1.x86_64.tar.xz -O /tmp/fedora-rootfs.tar.xz && pkexec brl import fedora /tmp/fedora-rootfs.tar.xz
+				sudo dnf update
             done
             echo -e "\n==> Fedora configured successfully."
             ;;

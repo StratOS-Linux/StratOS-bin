@@ -1,6 +1,6 @@
 # Maintainer: @zstg <zestig@duck.com>
 pkgname=stratos-bin
-pkgver=1.1
+pkgver=1.2
 pkgrel=0
 pkgdesc="Core StratOS scripts"
 arch=('any')
