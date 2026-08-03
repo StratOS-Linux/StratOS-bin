@@ -10,8 +10,8 @@ extensions=(
     # forge@jmmaranan.com
     # burn-my-windows@schneegans.github.com
 
-for i in ${extensions[@]}; do
-    gnome-extensions enable $i >/dev/null
+for i in "${extensions[@]}"; do
+    gnome-extensions enable "$i" >/dev/null
 done
 
 
@@ -33,5 +33,5 @@ gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMonoNF 1
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark # System dark theme
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Settings.desktop', 'emacs.desktop', 'chromium.desktop']"
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Settings.desktop', 'emacs.desktop', 'zen.desktop']"
 gsettings set org.gnome.desktop.wm.preferences button-layout "close,minimize,maximize:"
